@@ -8,8 +8,10 @@ import { RobotsQuery } from '../../state/robots.query';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DanceOffHomeComponent implements OnInit {
-
-  constructor(private robotsService: RobotsService, private robotsQuery: RobotsQuery) { }
+  constructor(
+    private robotsService: RobotsService,
+    private robotsQuery: RobotsQuery
+  ) {}
 
   public competitionInProgress = false;
 
@@ -25,5 +27,4 @@ export class DanceOffHomeComponent implements OnInit {
       this.robotsService.populateRobotsStore();
     }
   }
-
 }

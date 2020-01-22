@@ -15,8 +15,21 @@ export class RobotTeamComponent implements OnInit {
   @HostBinding('class.left-side')
   public left = false;
 
+
+  @Input()
+  public highlight = -1;
+
+  /**
+   * Normally, forms should be handled with ReactiveForms,
+   * but as the name only needs to be present and will not be saved anywhere,
+   * [(ngModel)] for team.name will do...
+   */
   @Input()
   public team: RobotTeam;
+
+  public isHighlighted(index: number): boolean {
+    return index === this.highlight;
+  }
 
   ngOnInit() {
   }

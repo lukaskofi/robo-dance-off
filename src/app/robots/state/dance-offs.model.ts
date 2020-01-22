@@ -16,3 +16,5 @@ export interface DanceOffResult {
 export interface DanceOffResults {
   danceoffs: DanceOffResult[];
 }
+
+export type TeamResult = [boolean, boolean, boolean, boolean, boolean];

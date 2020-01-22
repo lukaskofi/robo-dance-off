@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PartialMaterialModule } from '../partial-material/partial-material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   exports: [
     PartialMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

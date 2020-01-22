@@ -1,8 +1,13 @@
-<div class="stage" *ngIf="robots; else error">
-  <rbo-robot-team [left]="true"></rbo-robot-team>
-  <rbo-robot-team></rbo-robot-team>
+<div class="stage" *ngIf="teamsReady; else error">
+  <rbo-robot-team [left]="true" [team]="leftTeam" [highlight]="2"></rbo-robot-team>
+  <mat-card class="competition-area">
+    <button mat-raised-button color="primary" [disabled]="!readyToDance" (click)="performDanceCompetition()">Start dancing!</button>
+  </mat-card>
+  <rbo-robot-team [team]="rightTeam"></rbo-robot-team>
 </div>
 
 <ng-template #error>
-  Something went wrong!
+  <mat-card>
+    Teams couldn't be formed.
+  </mat-card>
 </ng-template>

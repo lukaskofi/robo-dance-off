@@ -9,12 +9,13 @@ import { DanceOffHomeComponent } from './components';
 import { RobotAvatarStripComponent } from './components/robot-avatar-strip/robot-avatar-strip.component';
 import { RobotTeamComponent } from './components/robot-team/robot-team.component';
 import { DanceOffStageComponent } from './components/dance-off-stage/dance-off-stage.component';
+import { CompetitionService } from './services/competition.service';
 
 
 
 @NgModule({
   declarations: [DanceOffHomeComponent, RobotAvatarStripComponent, RobotTeamComponent, DanceOffStageComponent],
-  providers: [ApiService, RobotsService, RobotsQuery, RobotsStore],
+  providers: [ApiService, RobotsService, RobotsQuery, RobotsStore, CompetitionService],
   imports: [
     CommonModule,
     SharedModule
