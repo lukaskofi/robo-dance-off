@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DanceOffHomeComponent } from './components/dance-off-home/dance-off-home.component';
 import { RobotsService } from './state/robots.service';
 import { RobotsQuery } from './state/robots.query';
 import { ApiService } from './services/api.service';
 import { RobotsStore } from './state/robots.store';
+import { SharedModule } from '../shared/shared.module';
+import { DanceOffHomeComponent } from './components';
+import { RobotAvatarStripComponent } from './components/robot-avatar-strip/robot-avatar-strip.component';
+import { RobotTeamComponent } from './components/robot-team/robot-team.component';
+import { DanceOffStageComponent } from './components/dance-off-stage/dance-off-stage.component';
 
 
 
 @NgModule({
-  declarations: [DanceOffHomeComponent],
+  declarations: [DanceOffHomeComponent, RobotAvatarStripComponent, RobotTeamComponent, DanceOffStageComponent],
   providers: [ApiService, RobotsService, RobotsQuery, RobotsStore],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class RobotsModule { }

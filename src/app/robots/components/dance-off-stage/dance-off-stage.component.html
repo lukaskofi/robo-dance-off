@@ -1,0 +1,8 @@
+<div class="stage" *ngIf="robots; else error">
+  <rbo-robot-team [left]="true"></rbo-robot-team>
+  <rbo-robot-team></rbo-robot-team>
+</div>
+
+<ng-template #error>
+  Something went wrong!
+</ng-template>

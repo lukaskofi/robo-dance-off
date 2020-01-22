@@ -1,1 +1,30 @@
-<p>dance-off-home works!</p>
+<mat-card *ngIf="!competitionInProgress">
+  <mat-card-title>Welcome to the worlds hottest dance off!</mat-card-title>
+  <mat-card-content>
+    There is a certain clankering in the air as the robots anxiously enter the
+    arena for their next competition.
+
+    <rbo-robot-avatar-strip
+      [avatars]="robotAvatars$ | async"
+    ></rbo-robot-avatar-strip>
+
+    Actually, all they are waiting for is <em>YOU</em>. So stop reading, and get
+    going!
+
+    <div class="start-button-container">
+      <button mat-raised-button color="primary" (click)="startCompetition()">
+        <mat-icon aria-hidden="true">grade</mat-icon>
+        Start dance-off
+        <mat-icon aria-hidden="true">grade</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="primary">Rules</button>
+  </mat-card-actions>
+</mat-card>
+
+<rbo-dance-off-stage *ngIf="competitionInProgress" [robots]="workingRobots$ | async">
+
+</rbo-dance-off-stage>

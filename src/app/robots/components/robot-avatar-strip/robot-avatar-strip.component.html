@@ -1,0 +1,7 @@
+<div *ngIf="avatars; else loading" class="avatar-strip">
+  <img *ngFor="let avatar of avatars; let i = index" [src]="avatar" [style.animation-delay.s]="getAnimationDelay(i)" />
+</div>
+
+<ng-template #loading>
+  Here they come!
+</ng-template>

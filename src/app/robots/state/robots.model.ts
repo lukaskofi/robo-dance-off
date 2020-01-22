@@ -1,3 +1,10 @@
+export type RobotLineup = [Robot, Robot, Robot, Robot, Robot];
+
+export interface RobotTeam {
+  name: string;
+  robots: RobotLineup;
+}
+
 /**
  * Robot model as specified by the [documentation](https://challenge.parkside-interactive.com/docs/)
  */

@@ -1,0 +1,41 @@
+@import 'variables';
+
+$img-size: 2rem;
+
+@keyframes robot-shift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes robot-wiggle {
+  0%, 100% {
+    transform: translateY(0.5rem);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
+
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+div.avatar-strip {
+  width: max-content;
+  display: flex;
+  padding: $universal-padding 0;
+  animation: robot-shift 20s 1 ease-in-out forwards;
+  animation-delay: -0.1s;
+  margin-left: 100%;
+  img {
+    flex: 1;
+    width: $img-size;
+    height: auto;
+    animation: robot-wiggle 2s infinite;
+  }
+}
