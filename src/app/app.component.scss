@@ -1,0 +1,11 @@
+@import 'variables';
+
+// just adding the overall layout
+main {
+  box-sizing: border-box;
+  max-width: $body-max-width;
+  padding: $body-y-padding 0;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 2px 2px tomato; // make it visible during development
+}

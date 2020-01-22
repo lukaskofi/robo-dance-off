@@ -7,3 +7,12 @@ export interface DanceOff {
   loser: number;
   dancedAt: string;
 }
+
+export interface DanceOffResult {
+  winner: number;
+  opponents: [number, number];
+}
+
+export interface DanceOffResults {
+  danceoffs: DanceOffResult[];
+}

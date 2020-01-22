@@ -4,7 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PartialMaterialModule } from './partial-material/partial-material.module';
+import { RobotsModule } from './robots/robots.module';
+import { SharedModule } from './shared/shared.module';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { PartialMaterialModule } from './partial-material/partial-material.modul
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    PartialMaterialModule
+    SharedModule,
+    RobotsModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
