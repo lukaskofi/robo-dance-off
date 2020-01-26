@@ -8,7 +8,8 @@ import {
   MatButtonModule,
   MatChipsModule,
   MatToolbarModule,
-  MatTableModule
+  MatTableModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -21,7 +22,8 @@ import {
     MatButtonModule,
     MatChipsModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ]
 })
 export class PartialMaterialModule {}

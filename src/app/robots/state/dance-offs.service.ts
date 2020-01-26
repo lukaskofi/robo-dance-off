@@ -25,8 +25,24 @@ export class DanceOffService {
     });
   }
 
-  public loadResults(): void {
-    this.apiService.getDanceOffs().pipe(take(1)).subscribe(this.saveToStore);
+  public loadResults(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.apiService
+        .getDanceOffs()
+        .pipe(take(1))
+        .subscribe({
+          next: danceOffs => {
+            this.danceOffStore.upsertMany(danceOffs);
+          },
+          error: err => {
+            console.error(err);
+            reject(err);
+          },
+          complete: () => {
+            resolve();
+          }
+        });
+    });
   }
 
   private saveToStore(danceOffs: DanceOff[]): void {

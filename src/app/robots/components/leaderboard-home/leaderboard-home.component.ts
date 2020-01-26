@@ -36,22 +36,31 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
     return !_.isNil(this.data) && this.data.size > 0;
   }
 
+  public loading = false;
+
   public ngOnInit(): void {
     this.titleService.setTitle('Leaderboard');
     this.danceOffSubscription = this.danceOffsQuery
       .selectAll()
       .subscribe(next => {
         this.transformData(next);
-        console.log(this.data);
-        this.changeDetector.markForCheck();
       });
-    this.danceOffService.loadResults();
+    this.refresh();
   }
 
   public ngOnDestroy(): void {
     if (!_.isNil(this.danceOffSubscription)) {
       this.danceOffSubscription.unsubscribe();
     }
+  }
+
+  public refresh(): void {
+    this.loading = true;
+    this.changeDetector.markForCheck();
+    this.danceOffService.loadResults().then(() => {
+      this.loading = false;
+      this.changeDetector.markForCheck();
+    });
   }
 
   private transformData(danceOffs: DanceOff[]): void {
@@ -89,5 +98,7 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
       }
       this.data.set(danceOff.loser, loserData);
     }
+
+    this.changeDetector.markForCheck();
   }
 }

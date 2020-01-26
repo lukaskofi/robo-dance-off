@@ -1,0 +1,8 @@
+div.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mat-spinner {
+    margin-left: 1rem;
+  }
+}

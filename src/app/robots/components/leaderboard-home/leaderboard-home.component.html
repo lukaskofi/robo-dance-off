@@ -1,17 +1,38 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Leaderboard</mat-card-title>
+    <mat-card-title>
+      Leaderboard
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngIf="showLeaderboard">
-      <rbo-leaderboard-table ></rbo-leaderboard-table>
+      <button mat-stroked-button color="primary" [disabled]="loading" (click)="refresh()">
+        <div class="spinner-wrapper">
+          {{ loading ? 'Refreshing...' : 'Refresh' }}
+          <mat-spinner
+            [diameter]="16"
+            *ngIf="loading"
+            color="primary"
+          ></mat-spinner>
+        </div>
+      </button>
+      <rbo-leaderboard-table [data]="data"></rbo-leaderboard-table>
     </ng-container>
-    <div class="empty">
+    <div class="empty" *ngIf="!showLeaderboard">
       No dance-offs have taken place so far.
       <a routerLink="/dance-off">Go start</a> the first one!
     </div>
   </mat-card-content>
-  <mat-card-actions *ngIf="!showLeaderboard">
-    <button mat-button color="primary">Refresh</button>
+  <mat-card-actions>
+    <button mat-button color="primary" [disabled]="loading" (click)="refresh()">
+      <div class="spinner-wrapper">
+        {{ loading ? 'Refreshing...' : 'Refresh' }}
+        <mat-spinner
+          [diameter]="16"
+          *ngIf="loading"
+          color="primary"
+        ></mat-spinner>
+      </div>
+    </button>
   </mat-card-actions>
 </mat-card>
