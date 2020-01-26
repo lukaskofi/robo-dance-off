@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Input
 } from '@angular/core';
-import { Robot, RobotsQuery } from '../../state';
+import { Robot, RobotsQuery, RobotLeaderboardData } from '../../state';
 
 @Component({
   selector: 'rbo-leaderboard-table',
@@ -16,7 +16,7 @@ export class LeaderboardTableComponent {
   constructor(private robotsQuery: RobotsQuery) {}
 
   @Input()
-  public data: { [key: number]: number };
+  public data: Map<number, RobotLeaderboardData>;
 
   public robots$ = this.robotsQuery.selectAll();
 

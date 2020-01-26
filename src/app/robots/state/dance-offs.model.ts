@@ -17,4 +17,9 @@ export interface DanceOffResults {
   danceoffs: DanceOffResult[];
 }
 
+export interface RobotLeaderboardData {
+  danceOffs: number;
+  wins: number;
+}
+
 export type TeamResult = [boolean, boolean, boolean, boolean, boolean];

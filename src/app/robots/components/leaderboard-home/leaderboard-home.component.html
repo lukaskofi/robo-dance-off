@@ -3,15 +3,15 @@
     <mat-card-title>Leaderboard</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <ng-container *ngIf="data">
-      <rbo-leaderboard-table></rbo-leaderboard-table>
+    <ng-container *ngIf="showLeaderboard">
+      <rbo-leaderboard-table ></rbo-leaderboard-table>
     </ng-container>
     <div class="empty">
       No dance-offs have taken place so far.
       <a routerLink="/dance-off">Go start</a> the first one!
     </div>
   </mat-card-content>
-  <mat-card-actions *ngIf="data">
+  <mat-card-actions *ngIf="!showLeaderboard">
     <button mat-button color="primary">Refresh</button>
   </mat-card-actions>
 </mat-card>

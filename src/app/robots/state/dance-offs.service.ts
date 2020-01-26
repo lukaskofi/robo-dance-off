@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { DanceOffsStore } from './dance-offs.store';
-import { DanceOffResults } from './dance-offs.model';
+import { DanceOffResults, DanceOff } from './dance-offs.model';
+import { take } from 'rxjs/operators';
 
 @Injectable()
 export class DanceOffService {
@@ -22,5 +23,13 @@ export class DanceOffService {
         console.error(err);
       }
     });
+  }
+
+  public loadResults(): void {
+    this.apiService.getDanceOffs().pipe(take(1)).subscribe(this.saveToStore);
+  }
+
+  private saveToStore(danceOffs: DanceOff[]): void {
+    this.danceOffStore.upsertMany(danceOffs);
   }
 }

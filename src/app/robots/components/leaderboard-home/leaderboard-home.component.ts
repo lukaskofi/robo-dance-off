@@ -1,6 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { TitleService } from 'src/app/shared/services/title.service';
-import { DanceOffsQuery, DanceOff } from '../../state';
+import {
+  DanceOffsQuery,
+  DanceOff,
+  RobotLeaderboardData,
+  DanceOffService
+} from '../../state';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
@@ -10,29 +21,73 @@ import * as _ from 'lodash';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeaderboardHomeComponent implements OnInit, OnDestroy {
-  constructor(private titleService: TitleService, private danceOffsQuery: DanceOffsQuery) {}
+  constructor(
+    private titleService: TitleService,
+    private danceOffsQuery: DanceOffsQuery,
+    private danceOffService: DanceOffService,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
-  public data: { [key: number]: number }; // = {};
-
+  public data: Map<number, RobotLeaderboardData>;
   // private danceOffs$ = this.danceOffsQuery.selectAll();
   private danceOffSubscription: Subscription;
 
+  public get showLeaderboard(): boolean {
+    return !_.isNil(this.data) && this.data.size > 0;
+  }
+
   public ngOnInit(): void {
     this.titleService.setTitle('Leaderboard');
-    this.danceOffSubscription = this.danceOffsQuery.selectAll().subscribe(
-      next => {
-        this.processData(next);
-      }
-    );
+    this.danceOffSubscription = this.danceOffsQuery
+      .selectAll()
+      .subscribe(next => {
+        this.transformData(next);
+        console.log(this.data);
+        this.changeDetector.markForCheck();
+      });
+    this.danceOffService.loadResults();
   }
 
   public ngOnDestroy(): void {
-    if (! _.isNil(this.danceOffSubscription)) {
+    if (!_.isNil(this.danceOffSubscription)) {
       this.danceOffSubscription.unsubscribe();
     }
   }
 
-  private processData(data: DanceOff[]): void {
+  private transformData(danceOffs: DanceOff[]): void {
+    if (_.isEmpty(danceOffs)) {
+      return;
+    }
 
+    this.data = new Map<number, RobotLeaderboardData>();
+
+    for (const danceOff of danceOffs) {
+      if (_.isNil(danceOff)) {
+        continue;
+      }
+
+      let winnerData = this.data.get(danceOff.winner);
+      if (_.isNil(winnerData)) {
+        winnerData = {
+          wins: 0,
+          danceOffs: 0
+        };
+      } else {
+        winnerData.danceOffs += 1;
+        winnerData.wins += 1;
+      }
+      this.data.set(danceOff.winner, winnerData);
+
+      let loserData = this.data.get(danceOff.loser);
+      if (_.isNil(loserData)) {
+        loserData = {
+          wins: 0,
+          danceOffs: 0
+        };
+      } else {
+        loserData.danceOffs += 1;
+      }
+      this.data.set(danceOff.loser, loserData);
+    }
   }
 }
