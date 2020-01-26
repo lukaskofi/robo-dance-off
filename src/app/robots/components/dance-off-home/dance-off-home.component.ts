@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RobotsService } from '../../state/robots.service';
 import { RobotsQuery } from '../../state/robots.query';
+import { TitleService } from 'src/app/shared/services/title.service';
 
 @Component({
   templateUrl: './dance-off-home.component.html',
@@ -10,7 +11,8 @@ import { RobotsQuery } from '../../state/robots.query';
 export class DanceOffHomeComponent implements OnInit {
   constructor(
     private robotsService: RobotsService,
-    private robotsQuery: RobotsQuery
+    private robotsQuery: RobotsQuery,
+    private titleService: TitleService
   ) {}
 
   public competitionInProgress = false;
@@ -26,5 +28,6 @@ export class DanceOffHomeComponent implements OnInit {
     if (!this.robotsQuery.hasEntity()) {
       this.robotsService.populateRobotsStore();
     }
+    this.titleService.setTitle('Welcome');
   }
 }

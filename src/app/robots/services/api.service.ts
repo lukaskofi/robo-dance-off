@@ -24,12 +24,21 @@ export class ApiService {
     return this.dispatchPost(apiRoutes.danceOffs, results);
   }
 
+  /**
+   * Base GET, retry twice before giving up
+   * @param url Url to get
+   */
   private dispatchGet<T>(url: string): Observable<T> {
     return this.http.get<T>(url).pipe(
       retry(2)
     );
   }
 
+  /**
+   * Base POST
+   * @param url URL to post to
+   * @param body POST body
+   */
   private dispatchPost<T, M>(url: string, body: M): Observable<T> {
     return this.http.post<T>(url, body);
   }

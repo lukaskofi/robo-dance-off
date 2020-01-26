@@ -7,7 +7,8 @@ import {
   MatInputModule,
   MatButtonModule,
   MatChipsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +20,8 @@ import {
     MatInputModule,
     MatButtonModule,
     MatChipsModule,
-    MatToolbarModule
-  ],
+    MatToolbarModule,
+    MatTableModule
+  ]
 })
 export class PartialMaterialModule {}

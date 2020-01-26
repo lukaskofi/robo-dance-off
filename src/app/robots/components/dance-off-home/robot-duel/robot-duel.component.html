@@ -1,0 +1,11 @@
+<div class="duel-area">
+  <ng-container *ngIf="duel; else done">
+    <div *ngFor="let id of duel.opponents" [ngStyle]="dancingStyles[id]" class="robot-avatar">
+      <img [src]="getAvatar(id)"/>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #done>
+  <ng-content></ng-content>
+</ng-template>

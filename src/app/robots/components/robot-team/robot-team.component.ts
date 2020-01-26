@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  HostBinding
+} from '@angular/core';
 import { RobotTeam } from '../../state/robots.model';
 
 @Component({
@@ -7,17 +12,15 @@ import { RobotTeam } from '../../state/robots.model';
   styleUrls: ['./robot-team.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RobotTeamComponent implements OnInit {
-
-  constructor() { }
+export class RobotTeamComponent {
+  constructor() {}
 
   @Input()
   @HostBinding('class.left-side')
   public left = false;
 
-
   @Input()
-  public highlight = -1;
+  public score = -1;
 
   /**
    * Normally, forms should be handled with ReactiveForms,
@@ -27,11 +30,7 @@ export class RobotTeamComponent implements OnInit {
   @Input()
   public team: RobotTeam;
 
-  public isHighlighted(index: number): boolean {
-    return index === this.highlight;
+  public get showScore(): boolean {
+    return this.score !== -1;
   }
-
-  ngOnInit() {
-  }
-
 }

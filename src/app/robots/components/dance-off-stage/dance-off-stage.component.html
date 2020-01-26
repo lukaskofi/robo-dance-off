@@ -1,9 +1,42 @@
 <div class="stage" *ngIf="teamsReady; else error">
-  <rbo-robot-team [left]="true" [team]="leftTeam" [highlight]="2"></rbo-robot-team>
-  <mat-card class="competition-area">
-    <button mat-raised-button color="primary" [disabled]="!readyToDance" (click)="performDanceCompetition()">Start dancing!</button>
+  <rbo-robot-team
+    [left]="true"
+    [team]="leftTeam"
+    class="stage-area"
+    [score]="3"
+  ></rbo-robot-team>
+  <mat-card class="stage-area dance-off-stage">
+    <ng-container *ngIf="!dancing">
+      <mat-card-title>The Big Stage</mat-card-title>
+      <mat-card-content>
+        <p>Enter the team name above each team and</p>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!readyToDance"
+          (click)="performDanceCompetition()"
+        >
+          Start dancing!
+        </button>
+      </mat-card-content>
+    </ng-container>
+    <rbo-robot-duel *ngIf="dancing" [duel]="danceResult$ | async">
+      <div>
+        <p>
+          The dance-off is over. If you are interested, head over to the
+          leaderboard.
+        </p>
+        <p>
+          Or just start a new dance-off!
+        </p>
+      </div>
+    </rbo-robot-duel>
   </mat-card>
-  <rbo-robot-team [team]="rightTeam"></rbo-robot-team>
+  <rbo-robot-team
+    [team]="rightTeam"
+    class="stage-area"
+    [score]="3"
+  ></rbo-robot-team>
 </div>
 
 <ng-template #error>

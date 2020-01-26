@@ -3,7 +3,7 @@ import { QueryEntity } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { teamCriteria } from 'src/app/constants/competition';
-import { RobotLineup, Robot } from './robots.model';
+import { Robot } from './robots.model';
 
 @Injectable()
 export class RobotsQuery extends QueryEntity<RobotsState> {
@@ -20,6 +20,10 @@ export class RobotsQuery extends QueryEntity<RobotsState> {
   public workingRobots$ = this.selectAll({
     filterBy: this.isFunctionalRobot
   });
+
+  public getAvatar(id: number) {
+    return this.getEntity(id).avatar;
+  }
 
   private isFunctionalRobot(robot: Robot): boolean {
     return teamCriteria.allowOutOfOrder || !robot.outOfOrder;

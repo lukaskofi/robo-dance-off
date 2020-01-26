@@ -1,7 +1,13 @@
 <mat-toolbar color="primary">
-  <span>Robo Dance Off 9000</span>
+  <span>Robot Dance Off</span>
+  <span class="nav-btn">
+    <a mat-raised-button routerLink="/dance-off">Stage</a>
+  </span>
+  <span class="nav-btn">
+    <a mat-raised-button routerLink="/leaderboard">Leaderboard</a>
+  </span>
 </mat-toolbar>
 
 <main>
-  <router-outlet ></router-outlet>
+  <router-outlet></router-outlet>
 </main>
