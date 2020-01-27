@@ -1,6 +1,6 @@
 @mixin larger-than($size) {
   @if $size == phone {
-    @media (max-width: 599px) {
+    @media (min-width: 40rem) {
       @content;
     }
   } @else if $size == tablet {

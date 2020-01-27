@@ -8,9 +8,6 @@ div.robot-team {
   @include larger-than(tablet-landscape) {
     width: 20rem;
   }
-  @include larger-than(desktop) {
-    width: 26rem;
-  }
 }
 
 span.powermove {

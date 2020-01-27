@@ -1,6 +1,5 @@
-@import 'responsive';
-@import 'variables';
-
+@import "responsive";
+@import "variables";
 
 div.stage {
   width: 100%;
@@ -13,11 +12,23 @@ div.stage {
 
   div.robot-team {
     flex: 1;
+    @include larger-than(tablet) {
+      order: unset;
+    }
   }
   .dance-off-stage {
-    margin: 0 $universal-padding;
+    flex: 1;
+    order: -1;
     text-align: center;
     align-self: center;
+    box-sizing: border-box;
+    // margin: $universal-padding 0 0 0;
+    width: 100%;
+    @include larger-than(tablet) {
+      width: auto;
+      margin: $universal-padding;
+      order: unset;
+    }
     button {
       text-transform: uppercase;
     }
@@ -25,10 +36,8 @@ div.stage {
 }
 
 .stage-area {
-  & + & {
-    margin-top: $universal-padding;
-    @include larger-than(tablet) {
-      margin-top: 0;
-    }
+  margin-top: $universal-padding;
+  @include larger-than(tablet) {
+    margin-top: 0;
   }
 }
