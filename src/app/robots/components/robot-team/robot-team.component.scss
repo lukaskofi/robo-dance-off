@@ -1,3 +1,18 @@
+@import 'responsive';
+
+div.robot-team {
+  width: 100%;
+  @include larger-than(tablet) {
+    width: 15rem;
+  }
+  @include larger-than(tablet-landscape) {
+    width: 20rem;
+  }
+  @include larger-than(desktop) {
+    width: 26rem;
+  }
+}
+
 span.powermove {
   font-size: 40%;
   color: grey;
