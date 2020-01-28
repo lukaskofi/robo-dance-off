@@ -1,5 +1,11 @@
 # RoboDanceOff
 
+## Notes
+* Tests have been omitted because of time constraints.
+* No global state management has been implemented, as the application is simple enough to not require it.
+* Error handling and logging are both really basic, again because of time constraints.
+* Run with `ng serve` after running `npm install`.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server

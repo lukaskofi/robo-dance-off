@@ -1,6 +1,17 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { TitleService } from 'src/app/shared/services';
-import { DanceOffsQuery, DanceOffService, RobotLeaderboardData, DanceOff } from '../../state';
+import {
+  DanceOffsQuery,
+  DanceOffService,
+  RobotLeaderboardData,
+  DanceOff
+} from '../../state';
 import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
@@ -20,24 +31,27 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   public data: Map<number, RobotLeaderboardData>;
-  // private danceOffs$ = this.danceOffsQuery.selectAll();
+
   private danceOffSubscription: Subscription;
+
+  public loading = false;
 
   public get showLeaderboard(): boolean {
     return !_.isNil(this.data) && this.data.size > 0;
   }
 
-  public loading = false;
-
   public refresh(): void {
     this.loading = true;
     this.changeDetector.markForCheck();
-    this.danceOffService.loadResults().then(() => {
-      this.concludeLoading();
-    }).catch(() => {
-      this.snackBar.open('Something went wrong. Please try again later.');
-      this.concludeLoading();
-    });
+    this.danceOffService
+      .loadResults()
+      .then(() => {
+        this.concludeLoading();
+      })
+      .catch(() => {
+        this.snackBar.open('Something went wrong. Please try again later.');
+        this.concludeLoading();
+      });
   }
 
   public ngOnInit(): void {

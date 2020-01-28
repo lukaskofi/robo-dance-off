@@ -4,11 +4,8 @@
 div.duel-area {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  @include larger-than (tablet) {
-    flex-direction: row;
-  }
   div.robot-avatar {
     width: 30%;
     img {

@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 import {
   DanceOffHomeComponent,
   RobotAvatarStripComponent,
   RobotTeamComponent,
-  DanceOffStageComponent
+  DanceOffStageComponent,
+  RobotDuelComponent,
+  LeaderboardHomeComponent,
+  LeaderboardTableComponent
 } from './components';
-import { CompetitionService } from './services/competition.service';
-import { ApiService } from './services/api.service';
-import { RobotsService, RobotsQuery, RobotsStore, DanceOffsQuery, DanceOffsStore } from './state';
-import { RobotDuelComponent } from './components/robot-duel/robot-duel.component';
-import { LeaderboardHomeComponent } from './components/leaderboard-home/leaderboard-home.component';
-import { LeaderboardTableComponent } from './components/leaderboard-table/leaderboard-table.component';
-import { DanceOffService } from './state/dance-offs.service';
+import { ApiService, CompetitionService } from './services';
+import {
+  RobotsService,
+  RobotsQuery,
+  RobotsStore,
+  DanceOffService,
+  DanceOffsQuery,
+  DanceOffsStore
+} from './state';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [

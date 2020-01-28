@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./leaderboard-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LeaderboardTableComponent implements OnInit {
+export class LeaderboardTableComponent {
   constructor(private robotsQuery: RobotsQuery) {}
 
   @Input()
@@ -36,6 +36,10 @@ export class LeaderboardTableComponent implements OnInit {
     return 0;
   }
 
+  /**
+   *  Calculate win percentage of a single robot
+   * @param id robot id
+   */
   public getWinPercent(id: number): number {
     if (this.data && this.data.get(id)) {
       const robotData = this.data.get(id);
@@ -45,6 +49,10 @@ export class LeaderboardTableComponent implements OnInit {
     return 0;
   }
 
+  /**
+   *  Get win% stats for a single robot
+   * @param id robot id
+   */
   public getWinPercentInfo(id: number): string {
     if (this.data && this.data.get(id)) {
       const robotData = this.data.get(id);
@@ -53,6 +61,4 @@ export class LeaderboardTableComponent implements OnInit {
 
     return '';
   }
-
-  public ngOnInit(): void {}
 }
