@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { RobotsModule } from '../robots.module';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { apiRoutes } from 'src/app/constants/api';
+import { retry } from 'rxjs/operators';
 import { Robot } from '../state/robots.model';
-import { apiRoutes } from '../../constants/api';
 import { DanceOff, DanceOffResults } from '../state/dance-offs.model';
 
 @Injectable()

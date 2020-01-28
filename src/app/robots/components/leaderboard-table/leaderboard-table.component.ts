@@ -1,12 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, Input } from '@angular/core';
 import { RobotsQuery, RobotLeaderboardData, Robot } from '../../state';
 import { MatTableDataSource } from '@angular/material';
-import { Order } from '@datorama/akita';
 
 @Component({
   selector: 'rbo-leaderboard-table',

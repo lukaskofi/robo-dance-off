@@ -1,14 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Robot, RobotLineup, RobotTeam } from '../state/robots.model';
 import * as _ from 'lodash';
-import { teamCriteria } from 'src/app/constants/competition';
-import {
-  TeamResult,
-  DanceOffResult,
-  DanceOffResults
-} from '../state/dance-offs.model';
-import { DanceOffService } from '../state/dance-offs.service';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { teamCriteria } from 'src/app/constants/competition';
+import { DanceOffResults, TeamResult } from '../state/dance-offs.model';
+import { DanceOffService } from '../state/dance-offs.service';
+import { Robot, RobotLineup, RobotTeam } from '../state/robots.model';
 
 interface CompetitionResults {
   results: DanceOffResults;

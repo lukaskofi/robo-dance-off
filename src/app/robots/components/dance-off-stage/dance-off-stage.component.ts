@@ -1,19 +1,13 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-  ChangeDetectorRef
-} from '@angular/core';
-import { Robot, RobotTeam } from '../../state/robots.model';
-import { CompetitionService } from '../../services/competition.service';
-import * as _ from 'lodash';
-import { Observable, timer } from 'rxjs';
-import { DanceOffResult, DanceOffResults, TeamResult } from '../../state';
-import { map, take, tap } from 'rxjs/operators';
-import { teamCriteria } from 'src/app/constants/competition';
-import { TitleService } from 'src/app/shared/services/title.service';
+
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Input } from '@angular/core';
+import { CompetitionService } from '../../services';
+import { TitleService } from 'src/app/shared/services';
 import { MatSnackBar } from '@angular/material';
+import { Robot, RobotTeam, DanceOffResult, TeamResult, DanceOffResults } from '../../state';
+import { Observable, timer } from 'rxjs';
+import { take, map, tap } from 'rxjs/operators';
+import { teamCriteria } from 'src/app/constants/competition';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'rbo-dance-off-stage',

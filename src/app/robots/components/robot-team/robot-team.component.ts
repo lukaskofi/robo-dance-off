@@ -1,11 +1,5 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  HostBinding
-} from '@angular/core';
-import { RobotTeam, Robot } from '../../state/robots.model';
-import { TeamResult } from '../../state';
+import { Component, Input, HostBinding } from '@angular/core';
+import { TeamResult, RobotTeam, Robot } from '../../state';
 import * as _ from 'lodash';
 
 @Component({

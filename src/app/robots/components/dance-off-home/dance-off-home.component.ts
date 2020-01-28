@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RobotsService } from '../../state/robots.service';
-import { RobotsQuery } from '../../state/robots.query';
-import { TitleService } from 'src/app/shared/services/title.service';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { RobotsService, RobotsQuery } from '../../state';
+import { TitleService } from 'src/app/shared/services';
+
 
 @Component({
   templateUrl: './dance-off-home.component.html',

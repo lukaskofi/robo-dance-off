@@ -1,11 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input
-} from '@angular/core';
-import { DanceOffResult, RobotsQuery } from 'src/app/robots/state';
 import * as _ from 'lodash';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { RobotsQuery, DanceOffResult } from '../../state';
 
 interface RobotStyleDescriptor {
   [key: string]: string;

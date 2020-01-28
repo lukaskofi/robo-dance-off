@@ -1,6 +1,6 @@
-import { Robot } from './robots.model';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
+import { Robot } from './robots.model';
 
 export interface RobotsState extends EntityState<Robot, number> {}
 

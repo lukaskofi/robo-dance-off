@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { take } from 'rxjs/operators';
 import { DanceOffsStore } from './dance-offs.store';
 import { DanceOffResults, DanceOff } from './dance-offs.model';
-import { take } from 'rxjs/operators';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class DanceOffService {

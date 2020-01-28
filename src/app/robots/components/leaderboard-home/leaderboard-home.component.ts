@@ -1,20 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  OnDestroy,
-  ChangeDetectorRef
-} from '@angular/core';
-import { TitleService } from 'src/app/shared/services/title.service';
-import {
-  DanceOffsQuery,
-  DanceOff,
-  RobotLeaderboardData,
-  DanceOffService
-} from '../../state';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { TitleService } from 'src/app/shared/services';
+import { DanceOffsQuery, DanceOffService, RobotLeaderboardData, DanceOff } from '../../state';
+import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   templateUrl: './leaderboard-home.component.html',
