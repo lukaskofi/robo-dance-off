@@ -80,8 +80,6 @@ export class DanceOffStageComponent implements OnInit {
           } else {
             this.rightTeam.score += 1;
           }
-
-          console.log(this.leftTeam, this.rightTeam);
         } else {
           const winner = this.leftTeam.score > this.rightTeam.score ? this.leftTeam : this.rightTeam;
           this.danceOffFinished = true;
