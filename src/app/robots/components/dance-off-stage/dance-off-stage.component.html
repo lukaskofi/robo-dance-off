@@ -2,8 +2,9 @@
   <rbo-robot-team
     [left]="true"
     [team]="leftTeam"
+    [teamResult]="teamResult"
+    [showRobotResults]="danceOffFinished"
     class="stage-area"
-    [score]="3"
   ></rbo-robot-team>
   <mat-card class="stage-area dance-off-stage">
     <ng-container *ngIf="!dancing">
@@ -27,20 +28,21 @@
           <a routerLink="/leaderboard">leaderboard.</a>
         </p>
         <p>
-          Or just start a new dance-off!
+          <button mat-raised-button color="primary" (click)="restart()">Dance again!</button>
         </p>
       </div>
     </rbo-robot-duel>
   </mat-card>
   <rbo-robot-team
     [team]="rightTeam"
+    [teamResult]="teamResult"
+    [showRobotResults]="danceOffFinished"
     class="stage-area"
-    [score]="3"
   ></rbo-robot-team>
 </div>
 
 <ng-template #error>
   <mat-card>
-    Teams couldn't be formed.
+    Teams couldn't be formed. Please refresh.
   </mat-card>
 </ng-template>

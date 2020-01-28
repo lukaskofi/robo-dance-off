@@ -10,7 +10,7 @@ import {
 import { CompetitionService } from './services/competition.service';
 import { ApiService } from './services/api.service';
 import { RobotsService, RobotsQuery, RobotsStore, DanceOffsQuery, DanceOffsStore } from './state';
-import { RobotDuelComponent } from './components/dance-off-home/robot-duel/robot-duel.component';
+import { RobotDuelComponent } from './components/robot-duel/robot-duel.component';
 import { LeaderboardHomeComponent } from './components/leaderboard-home/leaderboard-home.component';
 import { LeaderboardTableComponent } from './components/leaderboard-table/leaderboard-table.component';
 import { DanceOffService } from './state/dance-offs.service';

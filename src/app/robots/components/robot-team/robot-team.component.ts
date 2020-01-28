@@ -4,13 +4,14 @@ import {
   Input,
   HostBinding
 } from '@angular/core';
-import { RobotTeam } from '../../state/robots.model';
+import { RobotTeam, Robot } from '../../state/robots.model';
+import { TeamResult } from '../../state';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'rbo-robot-team',
   templateUrl: './robot-team.component.html',
-  styleUrls: ['./robot-team.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./robot-team.component.scss']
 })
 export class RobotTeamComponent {
   constructor() {}
@@ -20,7 +21,10 @@ export class RobotTeamComponent {
   public left = false;
 
   @Input()
-  public score = -1;
+  public teamResult: TeamResult;
+
+  @Input()
+  public showRobotResults = false;
 
   /**
    * Normally, forms should be handled with ReactiveForms,
@@ -31,6 +35,14 @@ export class RobotTeamComponent {
   public team: RobotTeam;
 
   public get showScore(): boolean {
-    return this.score !== -1;
+    return this.team.score !== -1;
+  }
+
+  public getRobotBadge(robot: Robot, index: number) {
+    if (_.isNil(this.teamResult) || ! this.showRobotResults) {
+      return robot.experience;
+    }
+
+    return this.left === this.teamResult[index] ? 'W' : 'L';
   }
 }

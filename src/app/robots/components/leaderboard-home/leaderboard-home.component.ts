@@ -14,6 +14,7 @@ import {
 } from '../../state';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   templateUrl: './leaderboard-home.component.html',
@@ -25,6 +26,7 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
     private titleService: TitleService,
     private danceOffsQuery: DanceOffsQuery,
     private danceOffService: DanceOffService,
+    private snackBar: MatSnackBar,
     private changeDetector: ChangeDetectorRef
   ) {}
 
@@ -37,6 +39,17 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
   }
 
   public loading = false;
+
+  public refresh(): void {
+    this.loading = true;
+    this.changeDetector.markForCheck();
+    this.danceOffService.loadResults().then(() => {
+      this.concludeLoading();
+    }).catch(() => {
+      this.snackBar.open('Something went wrong. Please try again later.');
+      this.concludeLoading();
+    });
+  }
 
   public ngOnInit(): void {
     this.titleService.setTitle('Leaderboard');
@@ -54,13 +67,9 @@ export class LeaderboardHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public refresh(): void {
-    this.loading = true;
+  private concludeLoading(): void {
+    this.loading = false;
     this.changeDetector.markForCheck();
-    this.danceOffService.loadResults().then(() => {
-      this.loading = false;
-      this.changeDetector.markForCheck();
-    });
   }
 
   private transformData(danceOffs: DanceOff[]): void {

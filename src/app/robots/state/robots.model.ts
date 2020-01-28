@@ -3,6 +3,7 @@ export type RobotLineup = [Robot, Robot, Robot, Robot, Robot];
 export interface RobotTeam {
   name: string;
   robots: RobotLineup;
+  score: number;
 }
 
 /**

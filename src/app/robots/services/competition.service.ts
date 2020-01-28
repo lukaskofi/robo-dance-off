@@ -8,12 +8,20 @@ import {
   DanceOffResults
 } from '../state/dance-offs.model';
 import { DanceOffService } from '../state/dance-offs.service';
+import { MatSnackBar } from '@angular/material';
 
+interface CompetitionResults {
+  results: DanceOffResults;
+  teamWise: TeamResult;
+}
 @Injectable()
 export class CompetitionService {
   private static maxFormationAttempts = 100;
 
-  constructor(private danceOffService: DanceOffService) {}
+  constructor(
+    private danceOffService: DanceOffService,
+    private snackBar: MatSnackBar
+  ) {}
 
   /**
    * Create two teams from all available robots.
@@ -55,9 +63,10 @@ export class CompetitionService {
   public calculateTeamDanceOff(
     firstTeam: RobotTeam,
     secondTeam: RobotTeam
-  ): DanceOffResults {
+  ): CompetitionResults {
+    const teamWise = this.createWeightedRandomOutcome(firstTeam, secondTeam);
     const results = {
-      danceoffs: this.createWeightedRandomOutcome(firstTeam, secondTeam).map(
+      danceoffs: teamWise.map(
         (result, index) => {
           const firstRobotId = firstTeam.robots[index].id;
           const secondRobotId = secondTeam.robots[index].id;
@@ -69,9 +78,16 @@ export class CompetitionService {
       )
     };
 
-    this.danceOffService.postResults(results);
+    this.danceOffService.postResults(results).catch(() => {
+      this.snackBar.open(
+        'Results could not be posted to the leaderboard. Please try again later.'
+      );
+    });
 
-    return results;
+    return {
+      results,
+      teamWise
+    } ;
   }
 
   /**
@@ -96,7 +112,7 @@ export class CompetitionService {
   }
 
   /**
-   *
+   * Create a team of 5 robots, with total experience less than 50, and no duplicates
    * @param robots Robot list
    */
   private createRobotTeam(robots: Robot[]): RobotLineup {

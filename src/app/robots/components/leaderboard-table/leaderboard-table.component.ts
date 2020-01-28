@@ -51,5 +51,14 @@ export class LeaderboardTableComponent implements OnInit {
     return 0;
   }
 
+  public getWinPercentInfo(id: number): string {
+    if (this.data && this.data.get(id)) {
+      const robotData = this.data.get(id);
+      return `(${robotData.wins} of ${robotData.danceOffs})`;
+    }
+
+    return '';
+  }
+
   public ngOnInit(): void {}
 }

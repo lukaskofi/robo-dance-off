@@ -12,19 +12,28 @@ export class DanceOffService {
   ) {}
 
   /**
-   * No waiting for the results to be posted, we just display a message if it fails.
+   * Return a promise for simpler handling
    */
-  public postResults(results: DanceOffResults): void {
-    this.apiService.postDanceOffResults(results).subscribe({
-      next: danceOffs => {
-        this.danceOffStore.upsertMany(danceOffs);
-      },
-      error: err => {
-        console.error(err);
-      }
+  public postResults(results: DanceOffResults): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.apiService.postDanceOffResults(results).subscribe({
+        next: danceOffs => {
+          this.saveToStore(danceOffs);
+        },
+        error: err => {
+          console.error(err);
+          reject(err);
+        },
+        complete: () => {
+          resolve();
+        }
+      });
     });
   }
 
+  /**
+   * Return a promise for simpler handling
+   */
   public loadResults(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.apiService
@@ -32,7 +41,7 @@ export class DanceOffService {
         .pipe(take(1))
         .subscribe({
           next: danceOffs => {
-            this.danceOffStore.upsertMany(danceOffs);
+            this.saveToStore(danceOffs);
           },
           error: err => {
             console.error(err);
@@ -45,6 +54,10 @@ export class DanceOffService {
     });
   }
 
+  /**
+   * Upsert the data into the store
+   * @param danceOffs Data
+   */
   private saveToStore(danceOffs: DanceOff[]): void {
     this.danceOffStore.upsertMany(danceOffs);
   }

@@ -5,9 +5,7 @@ import {
   Input
 } from '@angular/core';
 import { DanceOffResult, RobotsQuery } from 'src/app/robots/state';
-import { Observable, timer } from 'rxjs';
 import * as _ from 'lodash';
-import { map, take } from 'rxjs/operators';
 
 interface RobotStyleDescriptor {
   [key: string]: string;
@@ -19,7 +17,7 @@ interface RobotStyleDescriptor {
   styleUrls: ['./robot-duel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RobotDuelComponent implements OnInit {
+export class RobotDuelComponent {
   // selected animate.css animations
   private static danceMoves = [
     'bounce',
@@ -48,7 +46,7 @@ export class RobotDuelComponent implements OnInit {
         const name = _.sample(RobotDuelComponent.danceMoves);
         this.dancingStyles[id] = {
           'animation-name': name,
-          'animation-duration': '700ms',
+          'animation-duration': `${_.random(400, 1200, false)}ms`,
           'animation-iteration-count': '1',
           'animation-delay': '200ms'
         };
@@ -64,5 +62,4 @@ export class RobotDuelComponent implements OnInit {
     return this.robotsQuery.getAvatar(id);
   }
 
-  ngOnInit() {}
 }
